@@ -42,7 +42,7 @@ func filterOwnedRecords(ownerID string, eps []*endpoint.Endpoint) []*endpoint.En
 	filtered := []*endpoint.Endpoint{}
 	for _, ep := range eps {
 		if endpointOwner, ok := ep.Labels[endpoint.OwnerLabelKey]; !ok || endpointOwner != ownerID {
-			log.Debugf(`Skipping endpoint %v because owner id does not match, found: "%s", required: "%s"`, ep, endpointOwner, ownerID)
+			log.Warnf(`Skipping endpoint %v because owner id does not match, found: "%s", required: "%s"`, ep, endpointOwner, ownerID)
 			continue
 		}
 		filtered = append(filtered, ep)
